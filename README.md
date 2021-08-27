@@ -17,6 +17,7 @@
 
 [![Library][library-screenshot]](https://music.qier222.com)
 
+## 鄙人自学使用，如若侵犯请立即告知，即删。
 ## ✨ 特性
 
 - ✅ 使用 Vue.js 全家桶开发
