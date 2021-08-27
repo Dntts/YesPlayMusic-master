@@ -219,6 +219,7 @@ export default {
         this.updateData({ key: 'loginMode', value: 'account' });
         this.$store.dispatch('fetchUserProfile').then(() => {
           this.$store.dispatch('fetchLikedPlaylist').then(() => {
+            alert('跳转！');
             this.$router.push({ path: '/library' });
           });
         });
@@ -260,8 +261,9 @@ export default {
         if (this.qrCodeKey === '') return;
         loginQrCodeCheck(this.qrCodeKey).then(result => {
           if (result.code === 800) {
-            this.getQrCodeKey(); // 重新生成QrCode
             this.qrCodeInformation = '二维码已失效，请重新扫码';
+            clearInterval(this.qrCodeCheckInterval);
+            this.getQrCodeKey(); // 重新生成QrCode
           } else if (result.code === 802) {
             this.qrCodeInformation = '扫描成功，请在手机上确认登录';
           } else if (result.code === 803) {
