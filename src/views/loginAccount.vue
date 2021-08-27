@@ -219,7 +219,7 @@ export default {
         this.updateData({ key: 'loginMode', value: 'account' });
         this.$store.dispatch('fetchUserProfile').then(() => {
           this.$store.dispatch('fetchLikedPlaylist').then(() => {
-            alert('跳转！');
+            // alert('跳转！');
             this.$router.push({ path: '/library' });
           });
         });

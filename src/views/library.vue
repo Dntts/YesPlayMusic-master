@@ -9,7 +9,12 @@
       <div class="liked-songs" @click="goToLikedSongsList">
         <div class="top">
           <p>
-            <span v-for="(line, index) in pickedLyric" v-show="line !== ''" :key="`${line}${index}`">{{ line }}<br /></span>
+            <span
+              v-for="(line, index) in pickedLyric"
+              v-show="line !== ''"
+              :key="`${line}${index}`"
+              >{{ line }}<br
+            /></span>
           </p>
         </div>
         <div class="bottom">
@@ -25,14 +30,24 @@
         </div>
       </div>
       <div class="songs">
-        <TrackList :id="liked.playlists.length > 0 ? liked.playlists[0].id : 0" :tracks="liked.songsWithDetails" :column-number="3" type="tracklist" dbclick-track-func="playPlaylistByID" />
+        <TrackList
+          :id="liked.playlists.length > 0 ? liked.playlists[0].id : 0"
+          :tracks="liked.songsWithDetails"
+          :column-number="3"
+          type="tracklist"
+          dbclick-track-func="playPlaylistByID"
+        />
       </div>
     </div>
 
     <div class="section-two">
       <div class="tabs-row">
         <div class="tabs">
-          <div class="tab dropdown" :class="{ active: currentTab === 'playlists' }" @click="updateCurrentTab('playlists')">
+          <div
+            class="tab dropdown"
+            :class="{ active: currentTab === 'playlists' }"
+            @click="updateCurrentTab('playlists')"
+          >
             <span class="text">{{
               {
                 all: $t('contextMenu.allPlaylists'),
@@ -40,43 +55,79 @@
                 liked: $t('contextMenu.likedPlaylists'),
               }[playlistFilter]
             }}</span>
-            <span class="icon" @click.stop="openPlaylistTabMenu">
-              <svg-icon icon-class="dropdown" />
-            </span>
+            <span class="icon" @click.stop="openPlaylistTabMenu"
+              ><svg-icon icon-class="dropdown"
+            /></span>
           </div>
-          <div class="tab" :class="{ active: currentTab === 'albums' }" @click="updateCurrentTab('albums')">
+          <div
+            class="tab"
+            :class="{ active: currentTab === 'albums' }"
+            @click="updateCurrentTab('albums')"
+          >
             {{ $t('library.albums') }}
           </div>
-          <div class="tab" :class="{ active: currentTab === 'artists' }" @click="updateCurrentTab('artists')">
+          <div
+            class="tab"
+            :class="{ active: currentTab === 'artists' }"
+            @click="updateCurrentTab('artists')"
+          >
             {{ $t('library.artists') }}
           </div>
-          <div class="tab" :class="{ active: currentTab === 'mvs' }" @click="updateCurrentTab('mvs')">
+          <div
+            class="tab"
+            :class="{ active: currentTab === 'mvs' }"
+            @click="updateCurrentTab('mvs')"
+          >
             {{ $t('library.mvs') }}
           </div>
-          <div class="tab" :class="{ active: currentTab === 'cloudDisk' }" @click="updateCurrentTab('cloudDisk')">
+          <div
+            class="tab"
+            :class="{ active: currentTab === 'cloudDisk' }"
+            @click="updateCurrentTab('cloudDisk')"
+          >
             云盘
           </div>
         </div>
-        <button v-show="currentTab === 'playlists'" class="tab-button" @click="openAddPlaylistModal">
-          <svg-icon icon-class="plus" />{{ $t('library.newPlayList') }}
+        <button
+          v-show="currentTab === 'playlists'"
+          class="tab-button"
+          @click="openAddPlaylistModal"
+          ><svg-icon icon-class="plus" />{{ $t('library.newPlayList') }}
         </button>
-        <button v-show="currentTab === 'cloudDisk'" class="tab-button" @click="selectUploadFiles">
-          <svg-icon icon-class="arrow-up-alt" /> 上传歌曲
+        <button
+          v-show="currentTab === 'cloudDisk'"
+          class="tab-button"
+          @click="selectUploadFiles"
+          ><svg-icon icon-class="arrow-up-alt" /> 上传歌曲
         </button>
       </div>
 
       <div v-show="currentTab === 'playlists'">
         <div v-if="liked.playlists.length > 1">
-          <CoverRow :items="filterPlaylists.slice(1)" type="playlist" sub-text="creator" :show-play-button="true" />
+          <CoverRow
+            :items="filterPlaylists.slice(1)"
+            type="playlist"
+            sub-text="creator"
+            :show-play-button="true"
+          />
         </div>
       </div>
 
       <div v-show="currentTab === 'albums'">
-        <CoverRow :items="liked.albums" type="album" sub-text="artist" :show-play-button="true" />
+        <CoverRow
+          :items="liked.albums"
+          type="album"
+          sub-text="artist"
+          :show-play-button="true"
+        />
       </div>
 
       <div v-show="currentTab === 'artists'">
-        <CoverRow :items="liked.artists" type="artist" :show-play-button="true" />
+        <CoverRow
+          :items="liked.artists"
+          type="artist"
+          :show-play-button="true"
+        />
       </div>
 
       <div v-show="currentTab === 'mvs'">
@@ -84,11 +135,23 @@
       </div>
 
       <div v-show="currentTab === 'cloudDisk'">
-        <TrackList :id="-8" :tracks="liked.cloudDisk" :column-number="3" type="cloudDisk" dbclick-track-func="playCloudDisk" :extra-context-menu-item="['removeTrackFromCloudDisk']" />
+        <TrackList
+          :id="-8"
+          :tracks="liked.cloudDisk"
+          :column-number="3"
+          type="cloudDisk"
+          dbclick-track-func="playCloudDisk"
+          :extra-context-menu-item="['removeTrackFromCloudDisk']"
+        />
       </div>
     </div>
 
-    <input ref="cloudDiskUploadInput" type="file" style="display: none" @change="uploadSongToCloudDisk" />
+    <input
+      ref="cloudDiskUploadInput"
+      type="file"
+      style="display: none"
+      @change="uploadSongToCloudDisk"
+    />
 
     <ContextMenu ref="playlistTabMenu">
       <div class="item" @click="changePlaylistFilter('all')">{{
@@ -123,7 +186,7 @@ import MvRow from '@/components/MvRow.vue';
 export default {
   name: 'Library',
   components: { SvgIcon, CoverRow, TrackList, MvRow, ContextMenu },
-  data () {
+  data() {
     return {
       show: false,
       likedSongs: [],
@@ -133,7 +196,7 @@ export default {
   },
   computed: {
     ...mapState(['data', 'liked']),
-    pickedLyric () {
+    pickedLyric() {
       if (this.lyric === undefined) return '';
       let lyric = this.lyric.split('\n');
       lyric = lyric.filter(l => {
@@ -152,10 +215,10 @@ export default {
         lyric[lineIndex + 2].split(']')[1],
       ];
     },
-    playlistFilter () {
+    playlistFilter() {
       return this.data.libraryPlaylistFilter || 'all';
     },
-    filterPlaylists () {
+    filterPlaylists() {
       const playlists = this.liked.playlists;
       const userId = this.data.user.userId;
       if (this.playlistFilter === 'mine') {
@@ -166,13 +229,13 @@ export default {
       return playlists;
     },
   },
-  created () {
+  created() {
     setTimeout(() => {
       if (!this.show) NProgress.start();
     }, 1000);
     this.loadData();
   },
-  activated () {
+  activated() {
     this.$parent.$refs.scrollbar.restorePosition();
     this.loadData();
     dailyTask();
@@ -180,7 +243,7 @@ export default {
   methods: {
     ...mapActions(['showToast']),
     ...mapMutations(['updateModal', 'updateData']),
-    loadData () {
+    loadData() {
       if (this.liked.songsWithDetails.length > 0) {
         NProgress.done();
         this.show = true;
@@ -200,14 +263,14 @@ export default {
       this.$store.dispatch('fetchLikedMVs');
       this.$store.dispatch('fetchCloudDisk');
     },
-    playLikedSongs () {
+    playLikedSongs() {
       this.$store.state.player.playPlaylistByID(
         this.liked.playlists[0].id,
         'first',
         true
       );
     },
-    updateCurrentTab (tab) {
+    updateCurrentTab(tab) {
       if (!isAccountLoggedIn() && tab !== 'playlists') {
         this.showToast(locale.t('toast.needToLogin'));
         return;
@@ -215,10 +278,10 @@ export default {
       this.currentTab = tab;
       this.$parent.$refs.main.scrollTo({ top: 375, behavior: 'smooth' });
     },
-    goToLikedSongsList () {
+    goToLikedSongsList() {
       this.$router.push({ path: '/library/liked-songs' });
     },
-    getRandomLyric () {
+    getRandomLyric() {
       if (this.liked.songs.length === 0) return;
       getLyric(
         this.liked.songs[randomNum(0, this.liked.songs.length - 1)]
@@ -226,7 +289,7 @@ export default {
         if (data.lrc !== undefined) this.lyric = data.lrc.lyric;
       });
     },
-    openAddPlaylistModal () {
+    openAddPlaylistModal() {
       if (!isAccountLoggedIn()) {
         this.showToast(locale.t('toast.needToLogin'));
         return;
@@ -237,17 +300,17 @@ export default {
         value: true,
       });
     },
-    openPlaylistTabMenu (e) {
+    openPlaylistTabMenu(e) {
       this.$refs.playlistTabMenu.openMenu(e);
     },
-    changePlaylistFilter (type) {
+    changePlaylistFilter(type) {
       this.updateData({ key: 'libraryPlaylistFilter', value: type });
       window.scrollTo({ top: 375, behavior: 'smooth' });
     },
-    selectUploadFiles () {
+    selectUploadFiles() {
       this.$refs.cloudDiskUploadInput.click();
     },
-    uploadSongToCloudDisk (e) {
+    uploadSongToCloudDisk(e) {
       const files = e.target.files;
       uploadSong(files[0]).then(result => {
         if (result.code === 200) {
