@@ -59,6 +59,20 @@
   --color-primary-bg-for-transparent: rgba(255, 255, 255, 0.12);
   --color-secondary-bg-for-transparent: rgba(255, 255, 255, 0.08);
 }
+/*
+  自定义主题
+*/
+[data-theme='custom'] {
+    --color-body-bg: #ff8c8c;
+    --color-text: #ffffff;
+    --color-primary: #000000d3;
+    --color-primary-bg: #000000;
+    --color-secondary: #7a7a7b;
+    --color-secondary-bg: #d3d4d4ab;
+    --color-navbar-bg: rgba(255, 60, 60, 0.863);
+    --color-primary-bg-for-transparent: rgba(255, 255, 255, 0.12);
+    --color-secondary-bg-for-transparent: rgba(255, 255, 255, 0.08);
+  }
 
 #app,
 input {

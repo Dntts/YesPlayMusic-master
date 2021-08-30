@@ -146,6 +146,7 @@ export default {
       auto: 'Auto',
       light: 'Light',
       dark: 'Dark',
+      custom: 'Custom',
     },
     automaticallyCacheSongs: 'Automatically cache songs',
     clearSongsCache: 'Clear Songs Cache',

@@ -142,6 +142,7 @@ export default {
       auto: 'Otomatik',
       light: 'Aydınlık',
       dark: 'Karanlık',
+      custom: 'Özel',
     },
     automaticallyCacheSongs: 'Müzikleri otomatik çerezle',
     clearSongsCache: 'Müzik çerezlerini temizle',

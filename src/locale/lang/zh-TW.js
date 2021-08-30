@@ -143,6 +143,7 @@ export default {
       auto: '自動',
       light: '淺色',
       dark: '深色',
+      custom: '自定義',
     },
     automaticallyCacheSongs: '自動快取歌曲',
     clearSongsCache: '清除歌曲快取',

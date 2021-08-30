@@ -52,6 +52,9 @@
             <option value="dark"
               >🌚 {{ $t('settings.appearance.dark') }}</option
             >
+            <option value="custom"
+              >🤪 {{ $t('settings.appearance.custom') }}</option
+            >
           </select>
         </div>
       </div>
